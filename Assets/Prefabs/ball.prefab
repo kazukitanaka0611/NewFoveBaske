@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4819707804769552}
   - component: {fileID: 33732109931340506}
   - component: {fileID: 23887636787319378}
-  - component: {fileID: 54070918873205720}
   - component: {fileID: 135554922450465626}
   - component: {fileID: 82984551614857228}
   - component: {fileID: 114745070589574234}
+  - component: {fileID: 54159699389605826}
   m_Layer: 9
   m_Name: ball
   m_TagString: Untagged
@@ -86,7 +86,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429600524212476}
   m_Mesh: {fileID: 4300000, guid: b41d6a84b72947a45982a9e93749b78e, type: 3}
---- !u!54 &54070918873205720
+--- !u!54 &54159699389605826
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
