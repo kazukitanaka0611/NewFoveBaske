@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Fove.Managed;
 
 public class Player : MonoBehaviour
@@ -10,14 +11,23 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject ball = null;
     [SerializeField] private float distance = 100;
     [SerializeField] private float blinkThreshold = 5f;
-    [SerializeField] private float power = 3.0f;
+    [SerializeField] private float power = 10.0f;
+    [SerializeField] private Text gameOverText = null;
+    [SerializeField] private float timeup = 180;
 
     private float countTime = 0;
-
+    private bool isGameOver = false;
 
     private void Start()
     {
-        
+        gameOverText.gameObject.SetActive(false);
+        Invoke("GameOver", timeup);
+    }
+
+    private void GameOver()
+    {
+        isGameOver = true;
+        gameOverText.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -43,6 +53,10 @@ public class Player : MonoBehaviour
                       dir.x, dir.y, dir.z);
                 }*/
 
+
+        // ゲームオーバーまで実行
+        if (isGameOver) return;
+
         Ray ray = new Ray(this.transform.position, FoveInterface.GetHMDRotation() * Vector3.forward * distance);
 
         RaycastHit hit;
@@ -56,6 +70,9 @@ public class Player : MonoBehaviour
         //Rayを画面に表示
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.green);
 
+        Debug.LogFormat("Rotation x : {0}, y: {1} z: {2} ",
+                    ray.direction.x, ray.direction.y, ray.direction.z);
+
         // まばたきでボールを飛ばすように
         countTime += Time.deltaTime;
 
@@ -64,7 +81,7 @@ public class Player : MonoBehaviour
         {
 
             GameObject ball = MakeBall();
-            ball.GetComponent<BaketBall>().Shot(ray.direction * distance);
+            ball.GetComponent<BaketBall>().Shot(ray.direction * power);
             countTime = 0;
         }
 
