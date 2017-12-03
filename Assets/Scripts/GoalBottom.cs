@@ -8,6 +8,8 @@ public class GoalBottom : MonoBehaviour
 
     private Collider parentCollider = null;
 
+    public AudioClip se;
+
     public void SetCollider(Collider collider)
     {
         parentCollider = collider;
@@ -21,6 +23,7 @@ public class GoalBottom : MonoBehaviour
             print("Detected!");
             if (scoreManager)
             {
+                GetComponent<AudioSource>().PlayOneShot(se);
                 scoreManager.AddScore(2);
             }
            
