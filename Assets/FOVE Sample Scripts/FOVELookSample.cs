@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FOVELookSample : MonoBehaviour {
 	public Light attachedLight;
@@ -35,6 +36,7 @@ public class FOVELookSample : MonoBehaviour {
 				material.SetColor("_EmissionColor", attachedLight.color);
 				attachedLight.enabled = true;
 				DynamicGI.SetEmissive(GetComponent<Renderer>(), attachedLight.color);
+                SceneManager.LoadScene(1);
 			}
 		}
 		else
