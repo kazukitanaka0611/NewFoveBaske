@@ -31,7 +31,10 @@ public class GoalBottom : MonoBehaviour
             print("Detected!");
             if (scoreManager)
             {
-                if (particle) particle.gameObject.SetActive(true);
+                if (particle) { 
+                    particle.gameObject.SetActive(true);
+                    Invoke("ParticeOver", 1.0f);
+                }
                 GetComponent<AudioSource>().PlayOneShot(se);
                 StartCoroutine("GoalDsp");
                 scoreManager.AddScore(2);
@@ -55,5 +58,10 @@ public class GoalBottom : MonoBehaviour
         goalText.SetActive(false);
 
 
+    }
+
+    private void ParticeOver()
+    {
+        if (particle) particle.gameObject.SetActive(false);
     }
 }
