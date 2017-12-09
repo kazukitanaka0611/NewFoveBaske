@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
                     ray.direction.x, ray.direction.y, ray.direction.z);
 */
 
-        Debug.LogFormat("{0}", Mathf.Round(FoveInterface.GetHMDPosition().z)));
+        Debug.LogFormat("{0}", Mathf.Round(FoveInterface.GetHMDPosition().z));
         // まばたきでボールを飛ばすように
         countTime += Time.deltaTime;
 
