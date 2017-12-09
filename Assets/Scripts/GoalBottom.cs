@@ -5,12 +5,18 @@ using UnityEngine;
 public class GoalBottom : MonoBehaviour
 {
     [SerializeField] ScoreManager scoreManager = null;
+    [SerializeField] ParticleSystem particle = null;
 
     private Collider parentCollider = null;
 
     public AudioClip se;
 
     public GameObject goalText;
+
+    private void Start()
+    {
+        if (particle) particle.gameObject.SetActive(false);
+    }
 
     public void SetCollider(Collider collider)
     {
@@ -25,6 +31,7 @@ public class GoalBottom : MonoBehaviour
             print("Detected!");
             if (scoreManager)
             {
+                if (particle) particle.gameObject.SetActive(true);
                 GetComponent<AudioSource>().PlayOneShot(se);
                 StartCoroutine("GoalDsp");
                 scoreManager.AddScore(2);
